@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1>Bienvenido al Control de Inventariado de Computo</h1>
+        <p>Por favor, inicia sesión o regístrate para continuar.</p>
+        <button id="loginButton" class="btn btn-primary m-2">
+            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+        </button>
+        <button id="registerButton" class="btn btn-secondary m-2">
+            <i class="fas fa-user-plus"></i> Registrarse
+        </button>
+    </div>
+    <script src="scripts/scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('loginButton').addEventListener('click', function() {
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+</html>

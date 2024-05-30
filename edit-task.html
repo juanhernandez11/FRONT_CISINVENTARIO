@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center text-3xl font-bold">Edit Task</h1>
+        <form id="editTaskForm" class="mt-6">
+            <div class="mb-4">
+                <label for="editTipoEquipo" class="block text-gray-700">Tipo de equipo de cómputo *</label>
+                <input type="text" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editTipoEquipo" name="editTipoEquipo" required>
+            </div>
+            <div class="mb-4">
+                <label for="editMarca" class="block text-gray-700">Marca *</label>
+                <input type="text" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editMarca" name="editMarca" required>
+            </div>
+            <div class="mb-4">
+                <label for="editModelo" class="block text-gray-700">Modelo *</label>
+                <input type="text" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editModelo" name="editModelo" required>
+            </div>
+            <div class="mb-4">
+                <label for="editNumeroSerie" class="block text-gray-700">Número de serie *</label>
+                <input type="text" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editNumeroSerie" name="editNumeroSerie" required>
+            </div>
+            <div class="mb-4">
+                <label for="editSistemaOperativo" class="block text-gray-700">Sistema operativo *</label>
+                <input type="text" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editSistemaOperativo" name="editSistemaOperativo" required>
+            </div>
+            <div class="mb-4">
+                <label for="editRam" class="block text-gray-700">Capacidad de memoria RAM (GB) *</label>
+                <input type="number" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editRam" name="editRam" required>
+            </div>
+            <div class="mb-4">
+                <label for="editDiscoDuro" class="block text-gray-700">Capacidad de disco duro (GB) *</label>
+                <input type="number" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editDiscoDuro" name="editDiscoDuro" required>
+            </div>
+            <div class="mb-4">
+                <label for="editArquitectura" class="block text-gray-700">Arquitectura *</label>
+                <input type="text" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editArquitectura" name="editArquitectura" required>
+            </div>
+            <div class="mb-4">
+                <label for="editProcesadorMarca" class="block text-gray-700">Procesador marca *</label>
+                <input type="text" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editProcesadorMarca" name="editProcesadorMarca" required>
+            </div>
+            <div class="mb-4">
+                <label for="editProcesadorModelo" class="block text-gray-700">Procesador modelo</label>
+                <input type="text" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editProcesadorModelo" name="editProcesadorModelo">
+            </div>
+            <div class="mb-4">
+                <label for="editProcesadorVelocidad" class="block text-gray-700">Procesador velocidad (GHz) *</label>
+                <input type="number" step="0.1" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editProcesadorVelocidad" name="editProcesadorVelocidad" required>
+            </div>
+            <div class="mb-4">
+                <label for="editInventario" class="block text-gray-700">Número de inventario o etiqueta</label>
+                <input type="text" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editInventario" name="editInventario">
+            </div>
+            <div class="mb-4">
+                <label for="editFecha" class="block text-gray-700">Fecha de adquisición *</label>
+                <input type="date" class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editFecha" name="editFecha" required>
+            </div>
+            <div class="mb-4">
+                <label for="editEstado" class="block text-gray-700">Estado *</label>
+                <select class="form-control w-full p-2 border border-gray-300 rounded mt-1" id="editEstado" name="editEstado" required>
+                    <option value="Nuevo">Nuevo</option>
+                    <option value="Usado">Usado</option>
+                </select>
+            </div>
+
+            <div class="flex justify-between">
+                <button type="submit" class="bg-green-500 text-black px-4 py-2 rounded">Save</button>
+                <button type="button" id="cancelButton" class="bg-secondary text-white px-4 py-2 rounded">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts/scripts.js"></script>
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+    const editTaskForm = document.getElementById('editTaskForm');
+    const cancelButton = document.getElementById('cancelButton');
+
+    // Obtener datos de la tarea a editar desde el almacenamiento local
+    const taskToEdit = JSON.parse(localStorage.getItem('taskToEdit'));
+
+    // Llenar formulario con datos de la tarea a editar
+    if (taskToEdit) {
+        document.getElementById('editTipoEquipo').value = taskToEdit.task.tipoEquipo;
+        document.getElementById('editMarca').value = taskToEdit.task.marca;
+        document.getElementById('editModelo').value = taskToEdit.task.modelo;
+        document.getElementById('editNumeroSerie').value = taskToEdit.task.numeroSerie;
+        document.getElementById('editSistemaOperativo').value = taskToEdit.task.sistemaOperativo;
+        document.getElementById('editRam').value = taskToEdit.task.ram;
+        document.getElementById('editDiscoDuro').value = taskToEdit.task.discoDuro;
+        document.getElementById('editArquitectura').value = taskToEdit.task.arquitectura;
+        document.getElementById('editProcesadorMarca').value = taskToEdit.task.procesadorMarca;
+        document.getElementById('editProcesadorModelo').value = taskToEdit.task.procesadorModelo;
+        document.getElementById('editProcesadorVelocidad').value = taskToEdit.task.procesadorVelocidad;
+        document.getElementById('editInventario').value = taskToEdit.task.inventario;
+        document.getElementById('editFecha').value = taskToEdit.task.fecha;
+        document.getElementById('editEstado').value = taskToEdit.task.estado;
+        // Llenar los demás campos con los datos correspondientes...
+    }
+
+    // Evento para cancelar la edición
+    cancelButton.addEventListener('click', function() {
+        // Redirigir a la página de Dashboard o realizar alguna otra acción de cancelación
+        window.location.href = 'dashboard.html';
+    });
+
+    // Evento para enviar el formulario de edición
+    editTaskForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Evitar que el formulario se envíe automáticamente
+
+        // Obtener los nuevos valores del formulario
+        const editedTask = {
+            tipoEquipo: editTaskForm.editTipoEquipo.value,
+            marca: editTaskForm.editMarca.value,
+            modelo: editTaskForm.editModelo.value,
+            numeroSerie: editTaskForm.editNumeroSerie.value,
+            sistemaOperativo: editTaskForm.editSistemaOperativo.value,
+            ram: editTaskForm.editRam.value,
+            discoDuro: editTaskForm.editDiscoDuro.value,
+            arquitectura: editTaskForm.editArquitectura.value,
+            procesadorMarca: editTaskForm.editProcesadorMarca.value,
+            procesadorModelo: editTaskForm.editProcesadorModelo.value,
+            procesadorVelocidad: editTaskForm.editProcesadorVelocidad.value,
+            inventario: editTaskForm.editInventario.value,
+            fecha: editTaskForm.editFecha.value,
+            estado: editTaskForm.editEstado.value
+            // Obtener el resto de los valores del formulario...
+        };
+
+        // Actualizar los datos de la tarea en el almacenamiento local
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const taskIndex = taskToEdit.index;
+        tasks[taskIndex] = editedTask;
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+
+        // Redirigir a la página de Dashboard o realizar alguna otra acción después de editar
+        window.location.href = 'dashboard.html';
+    });
+});
+
+    </script>
+</body>
+</html>

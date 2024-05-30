@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> <span id="usernameDisplay"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="unidades-medicas.html" id="unidades-medicas">Unidades Médicas</a>
+                        <a class="dropdown-item" href="impresoras.html" id="impresoras">Impresoras</a>
+                        <a class="dropdown-item" href="dashboard.html" id="seleccion-opcion">Equipos de Computo</a>
+                        <a class="dropdown-item" href="seleccion-opcion.html" id="seleccion-opcion">Selecciona una opción</a>
+                        <a class="dropdown-item" href="#" id="logoutButton">Cerrar Sesión</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between mb-4">
+            <h1 class="h3">Panel de Control</h1>
+            <div>
+                <button id="addUnitButton" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Agregar Unidad Médica
+                </button>
+            </div>
+        </div>
+
+        <div class="input-group mb-4">
+            <input type="text" class="form-control" id="searchInput" placeholder="Buscar...">
+            <div class="input-group-append">
+                <button class="btn btn-dark" type="button" id="searchButton">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row" id="unitsContainer">
+            <!-- Unidades médicas serán insertadas aquí -->
+        </div>
+    </div>
+
+    <!-- Formulario para agregar una nueva unidad médica -->
+    <div class="container mt-5" id="addUnitForm" style="display: none;">
+        <h2 id="formTitle">Agregar Nueva Unidad Médica</h2>
+        <form id="unitForm">
+            <!-- Aquí va el contenido del formulario -->
+            <div class="form-group">
+                <label for="clue">CLUE de la Unidad Médica</label>
+                <input type="text" class="form-control" id="clue" name="clue" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre de la Unidad Médica</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="nivelAtencion">Nivel de Atención</label>
+                <select class="form-control" id="nivelAtencion" name="nivelAtencion" required>
+                    <option value="Primer Nivel">Primer Nivel</option>
+                    <option value="Segundo Nivel">Segundo Nivel</option>
+                    <option value="Tercer Nivel">Tercer Nivel</option>
+                    <option value="No Aplica">No Aplica</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="internet">Estado de Internet</label>
+                <select class="form-control" id="internet" name="internet" required>
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="consultoriosHabilitados">Consultorios Habilitados</label>
+                <input type="number" class="form-control" id="consultoriosHabilitados" name="consultoriosHabilitados" required>
+            </div>
+            <div class="form-group">
+                <label for="consultoriosSinerhias">Consultorios SINERHIAS</label>
+                <input type="number" class="form-control" id="consultoriosSinerhias" name="consultoriosSinerhias" required>
+            </div>
+            <div class="form-group">
+                <label for="nombreAdministrador">Nombre del Administrador</label>
+                <input type="text" class="form-control" id="nombreAdministrador" name="nombreAdministrador">
+            </div>
+            <div class="form-group">
+                <label for="numeroTelefonico">Número Telefónico</label>
+                <input type="tel" class="form-control" id="numeroTelefonico" name="numeroTelefonico">
+            </div>
+            <div class="form-group">
+                <label for="usoSimba">Uso Simba</label>
+                <select class="form-control" id="usoSimba" name="usoSimba" required>
+                    <option value="Online">Online</option>
+                    <option value="Offline">Offline</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="farmacia">Farmacia</label>
+                <select class="form-control" id="farmacia" name="farmacia" required>
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                    <option value="No Aplica">No Aplica</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="computadoras">Número de Computadoras</label>
+                <input type="number" class="form-control" id="computadoras" name="computadoras" required>
+            </div>
+            <div class="form-group">
+                <label for="impresoras">Número de Impresoras</label>
+                <input type="number" class="form-control" id="impresoras" name="impresoras" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Unidad Médica</button>
+            <button type="button" class="btn btn-secondary" onclick="hideForm()">Cancelar</button>
+            <button type="button" class="btn btn-secondary" id="generateQRButton">Generar QR</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts/scripts.js"></script>
+    <script>
+    let editingUnitIndex = null;
+
+    // Función para mostrar el formulario de agregar unidad médica al hacer clic en el botón
+    document.getElementById('addUnitButton').addEventListener('click', function() {
+        showForm();
+    });
+
+    // Función para agregar una nueva unidad médica a la lista o editar una existente
+    document.getElementById('unitForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Obtener los valores del formulario
+        const clue = document.getElementById('clue').value;
+        const nombre = document.getElementById('nombre').value;
+        const nivelAtencion = document.getElementById('nivelAtencion').value;
+        const internet = document.getElementById('internet').value;
+        const consultoriosHabilitados = document.getElementById('consultoriosHabilitados').value;
+        const consultoriosSinerhias = document.getElementById('consultoriosSinerhias').value;
+        const nombreAdministrador = document.getElementById('nombreAdministrador').value;
+        const numeroTelefonico = document.getElementById('numeroTelefonico').value;
+        const usoSimba = document.getElementById('usoSimba').value;
+        const farmacia = document.getElementById('farmacia').value;
+        const computadoras = document.getElementById('computadoras').value;
+        const impresoras = document.getElementById('impresoras').value;
+
+        const unitData = {
+            clue,
+            nombre,
+            nivelAtencion,
+            internet,
+            consultoriosHabilitados,
+            consultoriosSinerhias,
+            nombreAdministrador,
+            numeroTelefonico,
+            usoSimba,
+            farmacia,
+            computadoras,
+            impresoras
+        };
+
+        if (editingUnitIndex !== null) {
+            // Editar unidad médica existente
+            updateUnitInLocalStorage(editingUnitIndex, unitData);
+            renderUnits();
+            editingUnitIndex = null;
+        } else {
+            // Crear un nuevo elemento de unidad médica
+            addUnitToLocalStorage(unitData);
+            renderUnits();
+        }
+
+        // Limpiar el formulario y regresar al panel de control
+        document.getElementById('unitForm').reset();
+        hideForm();
+    });
+
+    function editarUnidad(button) {
+        const unitIndex = button.closest('.col-md-4').getAttribute('data-index');
+        const units = JSON.parse(localStorage.getItem('units')) || [];
+        const unit = units[unitIndex];
+
+        // Rellenar el formulario con los valores existentes
+        document.getElementById('clue').value = unit.clue;
+        document.getElementById('nombre').value = unit.nombre;
+        document.getElementById('nivelAtencion').value = unit.nivelAtencion;
+        document.getElementById('internet').value = unit.internet;
+        document.getElementById('consultoriosHabilitados').value = unit.consultoriosHabilitados;
+        document.getElementById('consultoriosSinerhias').value = unit.consultoriosSinerhias;
+        document.getElementById('nombreAdministrador').value = unit.nombreAdministrador;
+        document.getElementById('numeroTelefonico').value = unit.numeroTelefonico;
+        document.getElementById('usoSimba').value = unit.usoSimba;
+        document.getElementById('farmacia').value = unit.farmacia;
+        document.getElementById('computadoras').value = unit.computadoras;
+        document.getElementById('impresoras').value = unit.impresoras;
+
+        editingUnitIndex = unitIndex;
+        showForm();
+    }
+
+    function eliminarUnidad(button) {
+        const unitIndex = button.closest('.col-md-4').getAttribute('data-index');
+        const units = JSON.parse(localStorage.getItem('units')) || [];
+        units.splice(unitIndex, 1);
+        localStorage.setItem('units', JSON.stringify(units));
+        renderUnits();
+    }
+
+    function showForm() {
+        document.getElementById('addUnitForm').style.display = 'block';
+        document.querySelector('.container').style.display = 'none';
+        document.querySelector('nav').style.display = 'none';
+        document.getElementById('formTitle').innerText = editingUnitIndex !== null ? 'Editar Unidad Médica' : 'Agregar Nueva Unidad Médica';
+    }
+
+    function hideForm() {
+        document.getElementById('addUnitForm').style.display = 'none';
+        document.querySelector('.container').style.display = 'block';
+        document.querySelector('nav').style.display = 'flex';
+    }
+
+    function addUnitToLocalStorage(unit) {
+        const units = JSON.parse(localStorage.getItem('units')) || [];
+        units.push(unit);
+        localStorage.setItem('units', JSON.stringify(units));
+    }
+
+    function updateUnitInLocalStorage(index, unit) {
+        const units = JSON.parse(localStorage.getItem('units')) || [];
+        units[index] = unit;
+        localStorage.setItem('units', JSON.stringify(units));
+    }
+
+    function renderUnits() {
+        const unitsContainer = document.getElementById('unitsContainer');
+        unitsContainer.innerHTML = '';
+        const units = JSON.parse(localStorage.getItem('units')) || [];
+        units.forEach((unit, index) => {
+            const unitContainer = document.createElement('div');
+            unitContainer.className = 'col-md-4 mb-4';
+            unitContainer.setAttribute('data-index', index);
+            unitContainer.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${unit.nombre}</h5>
+                        <p class="card-text clue"><strong>CLUE:</strong> ${unit.clue}</p>
+                        <p class="card-text nivelAtencion"><strong>Nivel de Atención:</strong> ${unit.nivelAtencion}</p>
+                        <p class="card-text internet"><strong>Internet:</strong> ${unit.internet}</p>
+                        <p class="card-text consultoriosHabilitados"><strong>Consultorios Habilitados:</strong> ${unit.consultoriosHabilitados}</p>
+                        <p class="card-text consultoriosSinerhias"><strong>Consultorios SINERHIAS:</strong> ${unit.consultoriosSinerhias}</p>
+                        <p class="card-text nombreAdministrador"><strong>Administrador:</strong> ${unit.nombreAdministrador}</p>
+                        <p class="card-text numeroTelefonico"><strong>Teléfono:</strong> ${unit.numeroTelefonico}</p>
+                        <p class="card-text usoSimba"><strong>Uso Simba:</strong> ${unit.usoSimba}</p>
+                        <p class="card-text farmacia"><strong>Farmacia:</strong> ${unit.farmacia}</p>
+                        <p class="card-text computadoras"><strong>Computadoras:</strong> ${unit.computadoras}</p>
+                        <p class="card-text impresoras"><strong>Impresoras:</strong> ${unit.impresoras}</p>
+                        <button class="btn btn-secondary btn-sm" onclick="editarUnidad(this)">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="eliminarUnidad(this)">Eliminar</button>
+                    </div>
+                </div>
+            `;
+            unitsContainer.appendChild(unitContainer);
+        });
+    }
+
+    // Función de búsqueda
+    document.getElementById('searchButton').addEventListener('click', function() {
+        const searchValue = document.getElementById('searchInput').value.toLowerCase();
+        const units = document.querySelectorAll('#unitsContainer .col-md-4');
+
+        units.forEach(unit => {
+            const nombre = unit.querySelector('.card-title').innerText.toLowerCase();
+            const clue = unit.querySelector('.card-text.clue').innerText.toLowerCase();
+            const nivelAtencion = unit.querySelector('.card-text.nivelAtencion').innerText.toLowerCase();
+            const internet = unit.querySelector('.card-text.internet').innerText.toLowerCase();
+            const consultoriosHabilitados = unit.querySelector('.card-text.consultoriosHabilitados').innerText.toLowerCase();
+            const consultoriosSinerhias = unit.querySelector('.card-text.consultoriosSinerhias').innerText.toLowerCase();
+            const nombreAdministrador = unit.querySelector('.card-text.nombreAdministrador').innerText.toLowerCase();
+            const numeroTelefonico = unit.querySelector('.card-text.numeroTelefonico').innerText.toLowerCase();
+            const usoSimba = unit.querySelector('.card-text.usoSimba').innerText.toLowerCase();
+            const farmacia = unit.querySelector('.card-text.farmacia').innerText.toLowerCase();
+            const computadoras = unit.querySelector('.card-text.computadoras').innerText.toLowerCase();
+            const impresoras = unit.querySelector('.card-text.impresoras').innerText.toLowerCase();
+
+            if (
+                nombre.includes(searchValue) ||
+                clue.includes(searchValue) ||
+                nivelAtencion.includes(searchValue) ||
+                internet.includes(searchValue) ||
+                consultoriosHabilitados.includes(searchValue) ||
+                consultoriosSinerhias.includes(searchValue) ||
+                nombreAdministrador.includes(searchValue) ||
+                numeroTelefonico.includes(searchValue) ||
+                usoSimba.includes(searchValue) ||
+                farmacia.includes(searchValue) ||
+                computadoras.includes(searchValue) ||
+                impresoras.includes(searchValue) 
+            ) {
+                unit.style.display = 'block';
+            } else {
+                unit.style.display = 'none';
+            }
+        });
+    });
+
+    // Función para generar QR
+    document.getElementById('generateQRButton').addEventListener('click', function() {
+        alert("Función de Generar QR aún no implementada.");
+        // Aquí puedes agregar el código para generar el QR.
+    });
+
+    // Inicialización al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+        renderUnits();
+    });
+    </script>
+</body>
+</html>

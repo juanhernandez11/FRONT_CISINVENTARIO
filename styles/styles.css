@@ -1,0 +1,74 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card .card-title {
+    font-weight: bold;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table thead th {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.input-group-append .btn {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.input-group-append .btn:hover {
+    background-color: #495057;
+}
+
+.btn-primary, .btn-secondary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+    border-radius: 50px;
+    padding: 10px 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.mt-5 {
+    margin-top: 5rem;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
+}

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos de Impresión</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> <span id="usernameDisplay"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="unidades-medicas.html" id="unidades-medicas">Unidades Médicas</a>
+                        <a class="dropdown-item" href="impresoras.html" id="impresoras">Impresoras</a>
+                        <a class="dropdown-item" href="dashboard.html" id="seleccion-opcion">Equipos de Computo</a>
+                        <a class="dropdown-item" href="seleccion-opcion.html" id="seleccion-opcion">Selecciona una opción</a>
+                        <a class="dropdown-item" href="#" id="logoutButton">Cerrar Sesión</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between mb-4">
+            <h1 class="h3">Equipos de Impresión</h1>
+            <div>
+                <button id="addPrinterButton" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Agregar Impresora
+                </button>
+            </div>
+        </div>
+
+        <div class="input-group mb-4">
+            <input type="text" class="form-control" id="searchInput" placeholder="Buscar...">
+            <div class="input-group-append">
+                <button class="btn btn-dark" type="button" id="searchButton">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row" id="printersContainer">
+            <!-- Impresoras serán insertadas aquí -->
+        </div>
+    </div>
+
+    <!-- Formulario para agregar una nueva impresora -->
+    <div class="container mt-5" id="addPrinterForm" style="display: none;">
+        <h2 id="formTitle">Agregar Nueva Impresora</h2>
+        <form id="printerForm">
+            <!-- Aquí va el contenido del formulario -->
+            <div class="form-group">
+                <label for="idUnidad">ID Unidad</label>
+                <input type="number" class="form-control" id="idUnidad" name="idUnidad" required>
+            </div>
+            <div class="form-group">
+                <label for="marca">Marca</label>
+                <select class="form-control" id="marca" name="marca" required>
+                    <option value="HP">HP</option>
+                    <option value="Samsung">Samsung</option>
+                    <option value="Oki Data">Oki Data</option>
+                    <option value="Lexmark">Lexmark</option>
+                    <option value="Brother">Brother</option>
+                    <option value="Cannon">Cannon</option>
+                    <option value="Epson">Epson</option>
+                    <option value="Kyosera">Kyosera</option>
+                    <option value="Ricoh">Ricoh</option>
+                    <option value="Sharp">Sharp</option>
+                    <option value="Xerox">Xerox</option>
+                    <option value="Otra">Otra</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="modelo">Modelo</label>
+                <input type="text" class="form-control" id="modelo" name="modelo" required>
+            </div>
+            <div class="form-group">
+                <label for="numeroSerie">Número de Serie</label>
+                <input type="text" class="form-control" id="numeroSerie" name="numeroSerie" required>
+            </div>
+            <div class="form-group">
+                <label for="tipoImpresora">Tipo de Impresora</label>
+                <select class="form-control" id="tipoImpresora" name="tipoImpresora" required>
+                    <option value="Monofuncional">Monofuncional</option>
+                    <option value="Multifuncional">Multifuncional</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="formatoImpresion">Formato de Impresión</label>
+                <select class="form-control" id="formatoImpresion" name="formatoImpresion" required>
+                    <option value="Inyeccion de tinta">Inyección de tinta</option>
+                    <option value="Laser">Láser</option>
+                    <option value="Matricial">Matricial</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipoConsumible">Tipo de Consumible</label>
+                <select class="form-control" id="tipoConsumible" name="tipoConsumible" required>
+                    <option value="Negro">Negro</option>
+                    <option value="Color">Color</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="estadoImpresora">Estado de la Impresora</label>
+                <select class="form-control" id="estadoImpresora" name="estadoImpresora" required>
+                    <option value="Funcional">Funcional</option>
+                    <option value="No Funcional">No Funcional</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipoIngreso">Tipo de Ingreso</label>
+                <select class="form-control" id="tipoIngreso" name="tipoIngreso" required>
+                    <option value="Inventario">Inventario</option>
+                    <option value="Suubrrogado">Suubrrogado</option>
+                    <option value="Donacion">Donación</option>
+                    <option value="Comodato">Comodato</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ubicacion">Ubicación</label>
+                <input type="text" class="form-control" id="ubicacion" name="ubicacion" required>
+            </div>
+            <div class="form-group">
+                <label for="comentarios">Comentarios</label>
+                <textarea class="form-control" id="comentarios" name="comentarios" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Impresora</button>
+            <button type="button" class="btn btn-secondary" onclick="hideForm()">Cancelar</button>
+            <button type="button" class="btn btn-secondary" id="generateQRButton">Generar QR</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        let editingPrinterIndex = null;
+
+        // Función para mostrar el formulario de agregar impresora al hacer clic en el botón
+        document.getElementById('addPrinterButton').addEventListener('click', function() {
+            showForm();
+        });
+
+        // Función para agregar una nueva impresora a la lista o editar una existente
+        document.getElementById('printerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Obtener los valores del formulario
+            const idUnidad = document.getElementById('idUnidad').value;
+            const marca = document.getElementById('marca').value;
+            const modelo = document.getElementById('modelo').value;
+            const numeroSerie = document.getElementById('numeroSerie').value;
+            const tipoImpresora = document.getElementById('tipoImpresora').value;
+            const formatoImpresion = document.getElementById('formatoImpresion').value;
+            const tipoConsumible = document.getElementById('tipoConsumible').value;
+            const estadoImpresora = document.getElementById('estadoImpresora').value;
+            const tipoIngreso = document.getElementById('tipoIngreso').value;
+            const ubicacion = document.getElementById('ubicacion').value;
+            const comentarios = document.getElementById('comentarios').value;
+
+            const printerData = {
+                idUnidad,
+                marca,
+                modelo,
+                numeroSerie,
+                tipoImpresora,
+                formatoImpresion,
+                tipoConsumible,
+                estadoImpresora,
+                tipoIngreso,
+                ubicacion,
+                comentarios
+            };
+
+            if (editingPrinterIndex !== null) {
+                // Editar impresora existente
+                updatePrinterInLocalStorage(editingPrinterIndex, printerData);
+                renderPrinters();
+                editingPrinterIndex = null;
+            } else {
+                // Agregar nueva impresora
+                addPrinterToLocalStorage(printerData);
+                renderPrinters();
+            }
+
+            // Limpiar el formulario y regresar al panel de control
+            document.getElementById('printerForm').reset();
+            hideForm();
+        });
+
+        function editarImpresora(button) {
+            const printerIndex = button.closest('.col-md-4').getAttribute('data-index');
+            const printers = JSON.parse(localStorage.getItem('printers')) || [];
+            const printer = printers[printerIndex];
+
+            // Rellenar el formulario con los valores existentes
+            document.getElementById('idUnidad').value = printer.idUnidad;
+            document.getElementById('marca').value = printer.marca;
+            document.getElementById('modelo').value = printer.modelo;
+            document.getElementById('numeroSerie').value = printer.numeroSerie;
+            document.getElementById('tipoImpresora').value = printer.tipoImpresora;
+            document.getElementById('formatoImpresion').value = printer.formatoImpresion;
+            document.getElementById('tipoConsumible').value = printer.tipoConsumible;
+            document.getElementById('estadoImpresora').value = printer.estadoImpresora;
+            document.getElementById('tipoIngreso').value = printer.tipoIngreso;
+            document.getElementById('ubicacion').value = printer.ubicacion;
+            document.getElementById('comentarios').value = printer.comentarios;
+
+            editingPrinterIndex = printerIndex;
+            showForm();
+        }
+
+        function eliminarImpresora(button) {
+            const printerIndex = button.closest('.col-md-4').getAttribute('data-index');
+            const printers = JSON.parse(localStorage.getItem('printers')) || [];
+            printers.splice(printerIndex, 1);
+            localStorage.setItem('printers', JSON.stringify(printers));
+            renderPrinters();
+        }
+
+        function showForm() {
+            document.getElementById('addPrinterForm').style.display = 'block';
+            document.querySelector('.container').style.display = 'none';
+            document.querySelector('nav').style.display = 'none';
+            document.getElementById('formTitle').innerText = editingPrinterIndex !== null ? 'Editar Impresora' : 'Agregar Nueva Impresora';
+        }
+
+        function hideForm() {
+            document.getElementById('addPrinterForm').style.display = 'none';
+            document.querySelector('.container').style.display = 'block';
+            document.querySelector('nav').style.display = 'flex';
+        }
+
+        function addPrinterToLocalStorage(printer) {
+            const printers = JSON.parse(localStorage.getItem('printers')) || [];
+            printers.push(printer);
+            localStorage.setItem('printers', JSON.stringify(printers));
+        }
+
+        function updatePrinterInLocalStorage(index, printer) {
+            const printers = JSON.parse(localStorage.getItem('printers')) || [];
+            printers[index] = printer;
+            localStorage.setItem('printers', JSON.stringify(printers));
+        }
+
+        function renderPrinters() {
+            const printersContainer = document.getElementById('printersContainer');
+            printersContainer.innerHTML = '';
+            const printers = JSON.parse(localStorage.getItem('printers')) || [];
+            printers.forEach((printer, index) => {
+                const printerContainer = document.createElement('div');
+                printerContainer.className = 'col-md-4 mb-4';
+                printerContainer.setAttribute('data-index', index);
+                printerContainer.innerHTML = `
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${printer.modelo}</h5>
+                            <p class="card-text"><strong>Marca:</strong> ${printer.marca}</p>
+                            <p class="card-text"><strong>Número de Serie:</strong> ${printer.numeroSerie}</p>
+                            <p class="card-text"><strong>Tipo de Impresora:</strong> ${printer.tipoImpresora}</p>
+                            <p class="card-text"><strong>Formato de Impresión:</strong> ${printer.formatoImpresion}</p>
+                            <p class="card-text"><strong>Tipo de Consumible:</strong> ${printer.tipoConsumible}</p>
+                            <p class="card-text"><strong>Estado de la Impresora:</strong> ${printer.estadoImpresora}</p>
+                            <p class="card-text"><strong>Tipo de Ingreso:</strong> ${printer.tipoIngreso}</p>
+                            <p class="card-text"><strong>Ubicación:</strong> ${printer.ubicacion}</p>
+                            <p class="card-text"><strong>Comentarios:</strong> ${printer.comentarios}</p>
+                            <button class="btn btn-secondary btn-sm" onclick="editarImpresora(this)">Editar</button>
+                            <button class="btn btn-danger btn-sm" onclick="eliminarImpresora(this)">Eliminar</button>
+                        </div>
+                    </div>
+                `;
+                printersContainer.appendChild(printerContainer);
+            });
+        }
+
+        // Función de búsqueda
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+            const printers = document.querySelectorAll('#printersContainer .col-md-4');
+
+            printers.forEach(printer => {
+                const modelo = printer.querySelector('.card-title').innerText.toLowerCase();
+                const marca = printer.querySelector('.card-text strong:nth-of-type(1)').innerText.toLowerCase();
+                const numeroSerie = printer.querySelector('.card-text strong:nth-of-type(2)').innerText.toLowerCase();
+                const tipoImpresora = printer.querySelector('.card-text strong:nth-of-type(3)').innerText.toLowerCase();
+                const formatoImpresion = printer.querySelector('.card-text strong:nth-of-type(4)').innerText.toLowerCase();
+                const tipoConsumible = printer.querySelector('.card-text strong:nth-of-type(5)').innerText.toLowerCase();
+                const estadoImpresora = printer.querySelector('.card-text strong:nth-of-type(6)').innerText.toLowerCase();
+                const tipoIngreso = printer.querySelector('.card-text strong:nth-of-type(7)').innerText.toLowerCase();
+                const ubicacion = printer.querySelector('.card-text strong:nth-of-type(8)').innerText.toLowerCase();
+                const comentarios = printer.querySelector('.card-text strong:nth-of-type(9)').innerText.toLowerCase();
+
+                if (
+                    modelo.includes(searchValue) ||
+                    marca.includes(searchValue) ||
+                    numeroSerie.includes(searchValue) ||
+                    tipoImpresora.includes(searchValue) ||
+                    formatoImpresion.includes(searchValue) ||
+                    tipoConsumible.includes(searchValue) ||
+                    estadoImpresora.includes(searchValue) ||
+                    tipoIngreso.includes(searchValue) ||
+                    ubicacion.includes(searchValue) ||
+                    comentarios.includes(searchValue)
+                ) {
+                    printer.style.display = 'block';
+                } else {
+                    printer.style.display = 'none';
+                }
+            });
+        });
+
+        // Inicialización al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPrinters();
+        });
+    </script>
+</body>
+</html>

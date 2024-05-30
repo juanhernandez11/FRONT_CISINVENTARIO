@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Tarea</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card mx-auto" style="max-width: 800px;">
+            <div class="card-body">
+                <h1 class="card-title text-center">Crear Tarea</h1>
+                <form id="createTaskForm" class="mt-4">
+                    <div class="form-group">
+                        <label for="tipoEquipo">Tipo de equipo de cómputo *</label>
+                        <select class="form-control" id="tipoEquipo" name="tipoEquipo" required>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Escritorio">Escritorio</option>
+                            <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="marca">Marca *</label>
+                        <select class="form-control" id="marca" name="marca" required>
+                            <option value="HP">HP</option>
+                            <option value="Dell">Dell</option>
+                            <option value="Lenovo">Lenovo</option>
+                            <option value="Asus">Asus</option>
+                            <option value="Acer">Acer</option>
+                            <option value="Toshiba">Toshiba</option>
+                            <option value="Samsung">Samsung</option>
+                            <option value="Apple">Apple</option>
+                            <option value="MSI">MSI</option>
+                            <option value="Gigabyte">Gigabyte</option>
+                            <option value="Xiaomi">Xiaomi</option>
+                            <option value="Razer">Razer</option>
+                            <option value="Logitech">Logitech</option>
+                            <option value="Roccat">Roccat</option>
+                            <option value="Corsair">Corsair</option>
+                            <option value="HyperX">HyperX</option>
+                            <option value="Kingston">Kingston</option>
+                            <option value="Zotac">Zotac</option>
+                            <option value="Nvidia">Nvidia</option>
+                            <option value="AMD">AMD</option>
+                            <option value="MSI">MSI</option>
+                            <option value="EVGA">EVGA</option>
+                            <!-- Agrega más opciones según sea necesario -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modelo">Modelo *</label>
+                        <input type="text" class="form-control" id="modelo" name="modelo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numeroSerie">Número de serie *</label>
+                        <input type="text" class="form-control" id="numeroSerie" name="numeroSerie" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sistemaOperativo">Sistema operativo *</label>
+                        <select class="form-control" id="sistemaOperativo" name="sistemaOperativo" required>
+                        <option value="LINUX">LINUX</option>
+                        <option value="WINDOWS">WINDOWS</option>
+                        <option value="MACOS">MACOS</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ram">Capacidad de memoria RAM (GB) *</label>
+                        <input type="number" class="form-control" id="ram" name="ram" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="discoDuro">Capacidad de disco duro (GB) *</label>
+                        <input type="number" class="form-control" id="discoDuro" name="discoDuro" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="arquitectura">Arquitectura *</label>
+                        <select class="form-control" id="arquitectura" name="arquitectura" required>
+                            <option value="x86">x32 BITS</option>
+                            <option value="x64">x64 BITS</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="procesadorMarca">Procesador marca *</label>
+                        <input type="text" class="form-control" id="procesadorMarca" name="procesadorMarca" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="procesadorModelo">Procesador modelo</label>
+                        <input type="text" class="form-control" id="procesadorModelo" name="procesadorModelo">
+                    </div>
+                    <div class="form-group">
+                        <label for="procesadorVelocidad">Procesador velocidad (GHz) *</label>
+                        <input type="number" step="0.1" class="form-control" id="procesadorVelocidad" name="procesadorVelocidad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inventario">Número de inventario o etiqueta</label>
+                        <input type="text" class="form-control" id="inventario" name="inventario">
+                    </div>
+                    <div class="form-group">
+                        <label for="conexionInternet">Tipo de conexión a internet *</label>
+                        <select class="form-control" id="conexionInternet" name="conexionInternet" required>
+                            <option value="WI-FI">WI-FI</option>
+                            <option value="ETHERNET">ETHERNET</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoIngreso">Tipo de ingreso *</label>
+                        <input type="text" class="form-control" id="tipoIngreso" name="tipoIngreso" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ubicacion">Ubicación*</label>
+                        <input type="text" class="form-control" id="ubicacion" name="ubicacion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="comentarios">Comentarios</label>
+                        <textarea class="form-control" id="comentarios" name="comentarios"></textarea>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="conexionInternetSwitch" name="conexionInternetSwitch">
+                        <label class="form-check-label" for="conexionInternetSwitch">¿El equipo tiene conexión a internet?</label>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Enviar
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="cancelButton">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                        <button type="button" class="btn btn-success" id="generateQRButton">
+                            <i class="fas fa-qrcode"></i> Generar QR
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/scripts.js"></script>
+</body>
+</html>
